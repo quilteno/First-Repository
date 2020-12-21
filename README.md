@@ -1,2 +1,2 @@
-# First-Repository
-The beginning with my First Code-study
+# Python
+The beginning with my Python study
