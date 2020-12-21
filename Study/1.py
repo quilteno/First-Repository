@@ -1,5 +1,4 @@
-print("Hello world")
-print("Hello world")
-print("Hello world")
-print("Hello world")
-print("Hello world")
+name = "nihao hello!"
+double_name = f"I say,{name}"
+message = f"Hello,{double_name}"
+print(message.upper())
