@@ -1,7 +1,9 @@
-names = ['JRK', 'LYF', 'LJW', 'MXS']
-for name in names[:3]:
-    print(name)
-names551 = names[:]
-for name551 in names551[:3]:
-    print(name551)
-
+dormitories = {
+    '551': ['JRK', 'LYF', 'LJW', 'MXS'],
+    '544': ['LJL', 'QLZ', 'XC', 'WZB'],
+}
+for dormitory, person_s in dormitories.items():
+    number = len(dormitories)
+    print(f"\n{dormitory} have {number}person,they are:")
+    for person in person_s:
+        print(person.title())
