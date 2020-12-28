@@ -1,2 +1,3 @@
-# SpaceShip
-第一次做游戏
+# Python
+
+The beginning with my Python study
