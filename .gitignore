@@ -1,5 +1,2 @@
-/*
-!Study
-!.gitignore
-!README.md
-*.pyc
+.vscode
+Monte_carlo_Pi

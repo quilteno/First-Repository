@@ -17,6 +17,6 @@ class Dog:
 
     def roll_over(self):
         """
-        simulate dog rolled order
+        simulate dog rolled order.
         """
         print(f"{self.name} rolled over!")
