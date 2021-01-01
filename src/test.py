@@ -1,7 +1,12 @@
-import json
+import sys 
+sys.path.append(r"")
+import unittest
+from name_function import get_formatted_name
 
-name = input("Type your name")
-filename = 'names.json'
-with open(names.json,"w") as f:
-    json.dump(name,f)
-    print()
+class NamesTestCase(unittest.TestCase):
+    """test"""
+    formatted_name = get_formatted_name('janis','joplin')
+    self.assertEqual(formatted_name,'janis Joplin')
+
+
+unittest.main()
