@@ -1,16 +1,22 @@
-def main():
-    string = 'hellor world!'
-    pl = place('or',string)
-    print(pl)
+filein = 'test.txt'
+fileout = 'testout.txt'
 
-def place(zi,mu):
-    len1 = len(zi)
-    print(len1)
-    pl = 8
-    for i in range(len(mu)):
-        if mu[i:i+len1] == zi:
-            pl = i
-            break
-    return pl   
-
-main()
+with open(filein, 'r',encoding='UTF-8') as file:
+    count = 0
+    
+    string1 = string2 = ''
+    for line in file:
+        #print(f"{'*'}{int((count / 10)) % 2}")
+        if int((count / 10)) % 2 == 0:
+            string1 += line
+        elif int((count / 10)) % 2 == 1:
+            string2 = line + string2
+            #print(string2)
+        if (count) % 320 == 0 and count != 0:
+            with open(fileout,'a') as out:
+                print(string1[:20] + string2[:20])
+                out.write(string1 + string2)
+            string1 = string2 = ''
+        count += 1
+    with open(fileout,'a') as out:
+            out.write(string1 + string2)
