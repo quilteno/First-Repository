@@ -1,5 +1,5 @@
-filein = 'sorted.txt'
-fileout = 'sorted&del_space&right_order.txt'
+filein = 'word/sorted.txt'
+fileout = 'word/sorted&del_space&right_order.txt'
 
 string = [''] * 8                           #定义个列表,有8个字符串
 count = 0                                   #计数器

@@ -1,5 +1,7 @@
-filename = 'word1.txt'  #输入文件
-output = 'word2.txt'   #输出文件
+import place
+
+filename = 'word/word1.txt'  #输入文件
+output = 'word/word2.txt'   #输出文件
 WIDTH = 20             #一行中翻译开始的位置
 key = ['n.','a.','v.','pron.','prep.','art.','ad.','aux.','vt.','num.','conj.','vi.','adj.','int.']
 
