@@ -1,3 +1,2 @@
-string = ['']*8
-
-print(string)
+import sys
+print (sys.path)
