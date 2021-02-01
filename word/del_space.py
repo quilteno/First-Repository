@@ -1,5 +1,5 @@
 filename = 'word/word2.txt'
-outfile = 'word/word2_fixed.txt'
+outfile = 'word/word_del_space.txt'
 
 #delete(outfile)
 

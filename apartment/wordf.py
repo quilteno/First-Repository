@@ -35,8 +35,7 @@ def style(key,line,width):
         if pls < pl:
             pl = pls
     a = [line[0:pl]]
-    b = [' ']
+    b = [''.join(' ')*(width-pl)]
     c = [line[pl:len1 + 1]]
-    a = a + b * (width - pl) + b + c  #拼接字符串,在中间加上空格
-    a = ''.join(a)
+    a = a + b + c  #拼接字符串,在中间加上空格
     return a

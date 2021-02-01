@@ -1,6 +1,6 @@
 import wordf
 
-filename = 'word/第一道工序.txt'
+filename = 'word/1.txt'
 outfile1 = 'word/part1.txt'
 outfile2 = 'word/part2.txt'
 
