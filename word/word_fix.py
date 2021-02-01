@@ -1,4 +1,4 @@
-filein = 'word/sorted.txt'
+filein = 'word/word2.txt'
 fileout = 'word/sorted&del_space&right_order.txt'
 
 string = [''] * 8                           #定义个列表,有8个字符串
