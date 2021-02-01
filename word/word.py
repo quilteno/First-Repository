@@ -18,16 +18,10 @@ def main():
             with open(output, 'a', encoding='UTF-8') as out:
                 if line[0] >= 'A' and line[0] <= 'z':
                     a = wordf.style(key, line.rstrip(), WIDTH)
-                    if count <= 123:
-                        a.append('\r')
-                        for i in range(10):
-                            a[-2] = a[-2].replace(str(i),'')
-                        a = ''.join(a)
-                        out.write(a)
-                    else:
-                        a = a + [flag] + ['\r']  #末尾添加数字
-                        a = ''.join(a)
-                        out.write(a)
+                
+                    a = a + [flag] + ['\r']  #末尾添加数字
+                    a = ''.join(a)
+                    out.write(a)
                 elif tmp == str(number):
                     flag = '   ' + str(number)   #数字前得隔着几个空
                     out.write(str(number))
