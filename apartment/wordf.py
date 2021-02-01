@@ -1,17 +1,17 @@
 import os
 
-def delete(path):
+def delete(paths):
     '''
     文件目录,用于删除文件
     '''
-    if os.path.exists(path):  # 如果文件存在
-    # 删除文件，可使用以下两种方法。
-        os.remove(path)
-        print('我删掉重新来了哦')  
-    else:
-        print('文件不在啊')  # 则返回文件不存在 
+    for path in paths:
+        if os.path.exists(path):  # 如果文件存在
+            # 删除文件
+            os.remove(path)
+            print('我删掉重新来了哦')
+        else:
+            print('文件不在啊')  # 则返回文件不存在 
      
-
 def serch(son, mother):
     '''
     关键字,原文

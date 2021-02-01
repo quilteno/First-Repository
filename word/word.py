@@ -11,25 +11,29 @@ def main():
     number = 29  #页码
     count = 1    #行数
     flag = ''    #用于在行尾添加数字
-    wordf.delete(output)
+    wordf.delete([output])
     with open(filename, 'r', encoding='UTF-8') as file:  #读入文件,按行操作
         for line in file:
             tmp = line.rstrip()
-            if count == 21:
-                l = [line]
-                print(f'第{count}行:{l}')
             with open(output, 'a', encoding='UTF-8') as out:
                 if line[0] >= 'A' and line[0] <= 'z':
-                    a = wordf.style(key, line.rstrip(), WIDTH) + [flag] + ['\r']
-                    a = ''.join(a)
-                    out.write(a)
+                    a = wordf.style(key, line.rstrip(), WIDTH)
+                    if count <= 123:
+                        a.append('\r')
+                        for i in range(10):
+                            a[-2] = a[-2].replace(str(i),'')
+                        a = ''.join(a)
+                        out.write(a)
+                    else:
+                        a = a + [flag] + ['\r']  #末尾添加数字
+                        a = ''.join(a)
+                        out.write(a)
                 elif tmp == str(number):
-                    flag = str(number)
+                    flag = '   ' + str(number)   #数字前得隔着几个空
                     out.write(str(number))
                     out.write('\r')
                     number -= 1
-
+                out.close()
             count += 1
-
 
 main()
