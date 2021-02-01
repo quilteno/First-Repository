@@ -6,7 +6,8 @@ def delete(path):
     '''
     if os.path.exists(path):  # 如果文件存在
     # 删除文件，可使用以下两种方法。
-        os.remove(path)  
+        os.remove(path)
+        print('我删掉重新来了哦')  
     else:
         print('文件不在啊')  # 则返回文件不存在 
      

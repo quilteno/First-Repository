@@ -1,8 +1,8 @@
 import os
 import wordf
 
-filename = 'word/bigger3.txt'  #输入文件
-output = 'word/word3.txt'  #输出文件
+filename = 'word/原件.txt'  #输入文件
+output = 'word/1.txt'  #输出文件
 WIDTH = 26  #一行中翻译开始的位置
 key = ['n.', 'a.', 'adv.', 'v.', 'pron.', 'prep.', 'art.', 'ad.', 'aux.', 'vt.', 'num.', 'conj.', 'vi.', 'adj.', 'int.']
 
