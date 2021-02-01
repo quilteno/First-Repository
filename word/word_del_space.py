@@ -1,6 +1,8 @@
 filename = 'word/word2.txt'
 outfile = 'word/word2_fixed.txt'
 
+#delete(outfile)
+
 with open(filename,'r',encoding='UTF-8') as file:
     for line in file:
         line = line[:20] + line[20:].replace(' ','')
