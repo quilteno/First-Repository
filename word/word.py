@@ -9,7 +9,8 @@ key = ['n.', 'a.', 'adv.', 'v.', 'pron.', 'prep.', 'art.', 'ad.', 'aux.', 'vt.',
 
 def main():
     number = 29  #页码
-    count = 1  #行数
+    count = 1    #行数
+    flag = ''    #用于在行尾添加数字
     wordf.delete(output)
     with open(filename, 'r', encoding='UTF-8') as file:  #读入文件,按行操作
         for line in file:
@@ -18,14 +19,16 @@ def main():
                 l = [line]
                 print(f'第{count}行:{l}')
             with open(output, 'a', encoding='UTF-8') as out:
-                if line[0][0] >= 'A' and line[0][0] <= 'z':
-                    a = wordf.style(key, line, WIDTH)
+                if line[0] >= 'A' and line[0] <= 'z':
+                    a = wordf.style(key, line.rstrip(), WIDTH) + [flag] + ['\r']
                     a = ''.join(a)
                     out.write(a)
                 elif tmp == str(number):
+                    flag = str(number)
                     out.write(str(number))
                     out.write('\r')
                     number -= 1
+
             count += 1
 
 
