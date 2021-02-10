@@ -28,7 +28,7 @@ def style(key,line,width):
     '''
     词性列表,原列,扩充为多少
     '''            
-    pl = 15
+    pl = 18
     len1 = len(line)
     for i in range(len(key)):  #查找字符串关键词
         pls = serch(key[i], line)
