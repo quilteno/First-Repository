@@ -3,9 +3,6 @@ import urllib.request
 import os
 import re
 
-old = 26945  #最早作品编号
-new = 26946  #最晚作品编号
-prilink = 'https://kuaishangche.buzz/sj/'
 txtName = 'sjhs/1.txt'
 headers = {
     'User-Agent':
@@ -16,17 +13,25 @@ headers = {
 
 
 def main():
+    link = 'https://kuaishangche.buzz/sj/182'  #初始链接位置
     delete(txtName)
-    for number in range(old, new):
-        link = prilink.format(number)
+    while True:
+        number = link[29:]
         req = urllib.request.Request(url=link, headers=headers)
-        res = urllib.request.urlopen(req)
+        try:
+            res = urllib.request.urlopen(req)
+        except urllib.error.HTTPError:
+            continue
         html = res.read().decode('utf-8')
-        pattern = re.compile(r'◆</i></span>', re.S)
-        basic = re.finditer(pattern, html)
-        print(basic)
+        Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
+        Star_end = re.search(r'</span></div><', html).start()
+        Eye_start = re.search(r'"fa fa-eye"></i>', html).end()  #查找观看
+        Eye_end = re.search(r'</span>\n<span class="comm"', html).start()
+        nextlink1 = re.search(r'"post-next"><a href="', html).end()  #查找下个链接位置
+        nextlink2 = re.search(r'" rel="next"', html).start()
+        link = html[nextlink1:nextlink2]  #切换下一篇文章链接
         with open(txtName, 'a+', encoding='utf-8') as file:
-            file.write(html)
+            file.write(str(number) + '\t' + html[Eye_start:Eye_end] + '\t' + html[Star_start:Star_end] + '\n')
             file.close()
 
 

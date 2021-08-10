@@ -22,9 +22,10 @@ def main():
     req = urllib.request.Request(url=link, headers=headers)
     res = urllib.request.urlopen(req)
     html = res.read().decode('utf-8')
-    pattern = re.compile(r'◆</i></span>', re.S)
-    basic = re.finditer(pattern, html)
-    print(basic)
+    begin = re.search(r'◆</i></span>', html).end()
+    end = re.search(r'</span></div><', html).begin()
+    star = html[begin:end]
+    print(star)
     with open(txtName, 'a+', encoding='utf-8') as file:
         file.write(html)
         file.close()
