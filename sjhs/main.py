@@ -11,10 +11,10 @@ headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 def main():
     response = requests.get(link, headers=headers)
     response.encoding = response.apparent_encoding
+    html = response.read().decode(response.apparent_encoding)
     delete(txtName)
-    print(response.headers)
     with open(txtName, 'a+', encoding=response.apparent_encoding) as file:
-        file.write(response.text)
+        file.write(html)
         file.close()
     # print(response.status_code)  # 打印状态码
     # print(response.url)  # 打印请求url
