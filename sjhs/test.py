@@ -17,17 +17,17 @@ headers = {
 
 def main():
     delete(txtName)
-    for number in range(old, new):
-        link = prilink.format(number)
-        req = urllib.request.Request(url=link, headers=headers)
-        res = urllib.request.urlopen(req)
-        html = res.read().decode('utf-8')
-        pattern = re.compile(r'◆</i></span>', re.S)
-        basic = re.finditer(pattern, html)
-        print(basic)
-        with open(txtName, 'a+', encoding='utf-8') as file:
-            file.write(html)
-            file.close()
+    link = prilink + str(old)
+    print(link)
+    req = urllib.request.Request(url=link, headers=headers)
+    res = urllib.request.urlopen(req)
+    html = res.read().decode('utf-8')
+    pattern = re.compile(r'◆</i></span>', re.S)
+    basic = re.finditer(pattern, html)
+    print(basic)
+    with open(txtName, 'a+', encoding='utf-8') as file:
+        file.write(html)
+        file.close()
 
 
 def delete(path):
