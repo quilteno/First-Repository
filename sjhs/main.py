@@ -13,15 +13,24 @@ headers = {
 
 
 def main():
-    link = 'https://kuaishangche.buzz/sj/182'  #初始链接位置
-    delete(txtName)
+    # delete(txtName)
+    with open(txtName, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        lastline = lines[-1]
+        print(lastline)
+        number = re.search(r'\t', lastline).end()
+        link = 'https://kuaishangche.buzz/sj/' + str(lastline[:number])  #初始链接位置
+        print(link)
+        file.close()
     while True:
-        number = link[29:]
         req = urllib.request.Request(url=link, headers=headers)
         try:
             res = urllib.request.urlopen(req)
         except urllib.error.HTTPError:
+            link = 'https://kuaishangche.buzz/sj/' + str(number)
+            number = number + 1
             continue
+        number = link[29:]
         html = res.read().decode('utf-8')
         Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
         Star_end = re.search(r'</span></div><', html).start()
