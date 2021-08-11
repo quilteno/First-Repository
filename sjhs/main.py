@@ -23,8 +23,10 @@ def main():
         except urllib.error.HTTPError:
             Id = int(link[29:]) + 1
             link = 'https://kuaishangche.buzz/sj/' + str(Id)
+            print(link + '错误')
             continue
         Id = link[29:]
+        linkid = link
         html = res.read().decode('utf-8')
         if html:
             Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
@@ -41,6 +43,7 @@ def main():
             continue
         with open(txtName, 'a+', encoding='utf-8') as file:
             file.write(Id + '\t' + html[Eye_start:Eye_end] + '\t' + html[Star_start:Star_end] + '\n')
+            print(linkid + '写入成功')
             file.close()
 
 
