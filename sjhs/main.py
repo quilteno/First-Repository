@@ -1,4 +1,5 @@
 # coding: UTF-8
+from collections import defaultdict
 import urllib.request
 import os
 import re
@@ -14,33 +15,33 @@ headers = {
 
 def main():
     # delete(txtName)
-    with open(txtName, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-        lastline = lines[-1]
-        print(lastline)
-        number = re.search(r'\t', lastline).end()
-        link = 'https://kuaishangche.buzz/sj/' + str(lastline[:number])  #初始链接位置
-        print(link)
-        file.close()
+    link = linkpath('default')
     while True:
         req = urllib.request.Request(url=link, headers=headers)
         try:
             res = urllib.request.urlopen(req)
         except urllib.error.HTTPError:
-            link = 'https://kuaishangche.buzz/sj/' + str(number)
-            number = number + 1
+            Id = int(link[29:]) + 1
+            link = 'https://kuaishangche.buzz/sj/' + str(Id)
             continue
-        number = link[29:]
+        Id = link[29:]
         html = res.read().decode('utf-8')
-        Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
-        Star_end = re.search(r'</span></div><', html).start()
-        Eye_start = re.search(r'"fa fa-eye"></i>', html).end()  #查找观看
-        Eye_end = re.search(r'</span>\n<span class="comm"', html).start()
-        nextlink1 = re.search(r'"post-next"><a href="', html).end()  #查找下个链接位置
-        nextlink2 = re.search(r'" rel="next"', html).start()
-        link = html[nextlink1:nextlink2]  #切换下一篇文章链接
+        try:
+            Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
+            Star_end = re.search(r'</span></div><', html).start()
+            Eye_start = re.search(r'"fa fa-eye"></i>', html).end()  #查找观看
+            Eye_end = re.search(r'</span>\n<span class="comm"', html).start()
+            nextlink1 = re.search(r'"post-next"><a href="', html).end()  #查找下个链接位置
+            nextlink2 = re.search(r'" rel="next"', html).start()
+            link = html[nextlink1:nextlink2]  #切换下一篇文章链接
+        except AttributeError:
+            print('出错，正在重载')
+            print(link)
+            Id = int(link[29:]) + 1
+            link = 'https://kuaishangche.buzz/sj/' + str(Id)
+            continue
         with open(txtName, 'a+', encoding='utf-8') as file:
-            file.write(str(number) + '\t' + html[Eye_start:Eye_end] + '\t' + html[Star_start:Star_end] + '\n')
+            file.write(Id + '\t' + html[Eye_start:Eye_end] + '\t' + html[Star_start:Star_end] + '\n')
             file.close()
 
 
@@ -53,6 +54,24 @@ def delete(path):
         print('我删掉重新来了哦')
     else:
         print('文件不在啊')  # 则返回文件不存在
+
+
+def linkpath(linkid):
+    '''
+    获取地址,返回字符串，default返回开始工作link，number返回最后一行数字
+    '''
+    print(linkid)
+    if linkid == 'default':
+        with open(txtName, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            lastline = lines[-1]
+            site = re.search(r'\t', lastline).end()  #求文件最后一行的id末尾位置
+            print('获取地址' + str(int(lastline[:site]) + 1))
+            link = 'https://kuaishangche.buzz/sj/' + str(lastline[:site])  #初始链接位置
+            file.close()
+    else:
+        link = 'https://kuaishangche.buzz/sj/' + linkid
+    return link
 
 
 main()
