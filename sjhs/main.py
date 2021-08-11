@@ -26,7 +26,7 @@ def main():
             continue
         Id = link[29:]
         html = res.read().decode('utf-8')
-        try:
+        if html:
             Star_start = re.search(r'◆</i></span>', html).end()  #查找收藏
             Star_end = re.search(r'</span></div><', html).start()
             Eye_start = re.search(r'"fa fa-eye"></i>', html).end()  #查找观看
@@ -34,9 +34,8 @@ def main():
             nextlink1 = re.search(r'"post-next"><a href="', html).end()  #查找下个链接位置
             nextlink2 = re.search(r'" rel="next"', html).start()
             link = html[nextlink1:nextlink2]  #切换下一篇文章链接
-        except AttributeError:
+        else:
             print('出错，正在重载')
-            print(link)
             Id = int(link[29:]) + 1
             link = 'https://kuaishangche.buzz/sj/' + str(Id)
             continue
